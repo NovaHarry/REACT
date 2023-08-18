@@ -9,6 +9,10 @@ const Body = () => {
   const [mainRestaurantData, setMainRestaurantData] = useState([]);
   const [renderRestaurantData, setRenderRestaurantData] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const fetchData = async () => {
     try {
       let data = await fetch(MAIN_URL);
@@ -27,13 +31,9 @@ const Body = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  if (renderRestaurantData.length === 0) return <Shimmer />;
 
-  return renderRestaurantData.length === 0 ? (
-    <Shimmer />
-  ) : (
+  return (
     <div className="body">
       <div className="search-bar">
         <input
