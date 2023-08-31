@@ -22,7 +22,7 @@ const Grocery = lazy(() => {
   return import("./components/Grocery");
 });
 
-// without return keyword
+// without the return keyword
 const AboutUs = lazy(() => import("./components/AboutUs"));
 
 const appRouter = createBrowserRouter([
