@@ -63,3 +63,38 @@
   background-color: aliceblue;
   border-radius: 12px;
 }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-title {
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.item-list {
+  height: 100%;
+  list-style: none;
+  padding: 15px;
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid slategray;
+}
+
+.item-list > img {
+  width: 100px;
+  height: 100px;
+}
+
+.user-class {
+  border: 2px dotted black;
+  padding: 5px;
+  border-radius: 12px;
+}

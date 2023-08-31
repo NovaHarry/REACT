@@ -1,11 +1,12 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import Menu from "./components/Menu";
+import Shimmer from "./components/Shimmer";
 
 const App = () => {
   return (
@@ -15,6 +16,14 @@ const App = () => {
     </div>
   );
 };
+
+// with return keyword
+const Grocery = lazy(() => {
+  return import("./components/Grocery");
+});
+
+// without return keyword
+const AboutUs = lazy(() => import("./components/AboutUs"));
 
 const appRouter = createBrowserRouter([
   {
@@ -27,11 +36,27 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <Menu />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Grocery />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

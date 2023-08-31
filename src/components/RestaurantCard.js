@@ -1,5 +1,5 @@
 import React from "react";
-import { IMG_URL } from "../configFiles/config";
+import { IMG_URL } from "../utils/config";
 const RestaurantCard = (props) => {
   const { name, cloudinaryImageId, avgRating, cuisines, areaName } =
     props.resData?.info;

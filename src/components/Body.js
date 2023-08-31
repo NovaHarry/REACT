@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { MAIN_URL } from "../configFiles/config";
+import { MAIN_URL } from "../utils/config";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [search, setSearch] = useState("");
 
   const [mainRestaurantData, setMainRestaurantData] = useState([]);
-  const [renderRestaurantData, setRenderRestaurantData] = useState([]);
+  const [renderRestaurantData, setRenderRestaurantData] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -31,7 +32,7 @@ const Body = () => {
     }
   };
 
-  if (renderRestaurantData.length === 0) return <Shimmer />;
+  if (renderRestaurantData === null) return <Shimmer />;
 
   return (
     <div className="body">
@@ -58,8 +59,10 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-container">
-        {renderRestaurantData.map((res) => (
-          <RestaurantCard key={res.info.id} resData={res} />
+        {renderRestaurantData?.map((res) => (
+          <Link key={res.info.id} to={"restaurant/" + res.info.id}>
+            <RestaurantCard resData={res} />
+          </Link>
         ))}
       </div>
     </div>
