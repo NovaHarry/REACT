@@ -18,6 +18,7 @@ const Body = () => {
     try {
       let data = await fetch(MAIN_URL);
       let parsedData = await data.json();
+
       setMainRestaurantData(
         parsedData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
@@ -39,6 +40,7 @@ const Body = () => {
       <div className="search-bar">
         <input
           type="text"
+          name="search-field"
           value={search}
           placeholder="Search"
           onChange={(e) => {
@@ -58,7 +60,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurant-container">
+      <div className="flex flex-wrap gap-8 m-2">
         {renderRestaurantData?.map((res) => (
           <Link key={res.info.id} to={"restaurant/" + res.info.id}>
             <RestaurantCard resData={res} />
