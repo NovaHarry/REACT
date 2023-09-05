@@ -1,10 +1,11 @@
-import React, { useEffect, useReducer, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import React, { useEffect, useState } from "react";
+import RestaurantCard, { offerLabel } from "./RestaurantCard";
 import { MAIN_URL } from "../utils/config";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
 const Body = () => {
+  const OfferRestaurantCard = offerLabel(RestaurantCard);
   const [search, setSearch] = useState("");
 
   const [mainRestaurantData, setMainRestaurantData] = useState([]);
@@ -37,7 +38,7 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="search-bar">
+      <div className="flex justify-end m-4 gap-4">
         <input
           type="text"
           name="search-field"
@@ -63,7 +64,11 @@ const Body = () => {
       <div className="flex flex-wrap gap-8 m-2">
         {renderRestaurantData?.map((res) => (
           <Link key={res.info.id} to={"restaurant/" + res.info.id}>
-            <RestaurantCard resData={res} />
+            {res.info?.aggregatedDiscountInfoV3?.header ? (
+              <OfferRestaurantCard resData={res} />
+            ) : (
+              <RestaurantCard resData={res} />
+            )}
           </Link>
         ))}
       </div>
