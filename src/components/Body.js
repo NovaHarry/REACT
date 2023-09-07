@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantCard, { offerLabel } from "./RestaurantCard";
 import { MAIN_URL } from "../utils/config";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
+  // CONTEXT
+  const { userName, setUserInfo } = useContext(UserContext);
+  //CONTEXT CODE END
+
   const OfferRestaurantCard = offerLabel(RestaurantCard);
   const [search, setSearch] = useState("");
 
@@ -40,6 +45,14 @@ const Body = () => {
     <div className="body">
       <div className="flex justify-end m-4 gap-4">
         <input
+          className="border-black border-2 rounded-md p-1"
+          type="text"
+          name="userName-field"
+          value={userName}
+          onChange={(e) => setUserInfo(e.target.value)}
+        />
+        <input
+          className="border-black border-2 rounded-md p-1"
           type="text"
           name="search-field"
           value={search}
@@ -49,7 +62,7 @@ const Body = () => {
           }}
         />
         <button
-          className="btn"
+          className="border-2 border-black rounded-md p-1 font-semibold"
           onClick={() => {
             const filteredData = mainRestaurantData.filter((res) =>
               res.info.name.toLowerCase().includes(search.toLowerCase())

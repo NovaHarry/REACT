@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
@@ -7,13 +7,30 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Menu from "./components/Menu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
+import appStore from "./utils/appStore";
+import { Provider } from "react-redux";
+import Cart from "./components/Cart";
 
 const App = () => {
+  const [userInfo, setUserInfo] = useState("");
+
+  useEffect(() => {
+    const data = {
+      name: "Nova",
+    };
+    setUserInfo(data.name);
+  }, []);
+
   return (
-    <div className="main-container">
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ userName: userInfo, setUserInfo }}>
+        <div className="main-container">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -57,6 +74,10 @@ const appRouter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,

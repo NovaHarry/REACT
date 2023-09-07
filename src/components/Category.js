@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import CategoryItem from "./CategoryItem";
 
-const Category = ({ ItemData }) => {
-  const [show, setShow] = useState(true);
+const Category = ({ ItemData, show, setShow }) => {
   const handleTitleClick = () => {
-    setShow(!show);
+    setShow();
   };
   return (
     <div className="bg-white my-4 rounded-sm">
