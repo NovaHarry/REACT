@@ -23,7 +23,8 @@ const Cart = () => {
 
       {cartItems.length === 0 ? (
         <div className="grid justify-center p-2 gap-4">
-          <img src="https://bakestudio.in/assets/images/cart/empty-cart.gif" />
+          {/* <img src="https://bakestudio.in/assets/images/cart/empty-cart.gif" /> */}
+          <img src="https://media.tenor.com/krFqoVs-cUAAAAAC/vadivelu.gif" />
           <h1>Cart is empty 😕. Add some delicious foods 🤤.</h1>
         </div>
       ) : (

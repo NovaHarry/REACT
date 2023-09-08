@@ -28,7 +28,7 @@ const Header = () => {
           <img className="w-48" src={LOGO_URL} />
         </Link>
       </div>
-      <div className="nav-list p-4 m-8">
+      <div className="p-4 m-8 font-semibold text-lg">
         <ul className="flex gap-3 ">
           <li>Online : {onlineStatus ? "🟢" : "🔴"}</li>
           <li>

@@ -1,8 +1,8 @@
 import React from "react";
 import { IMG_URL } from "../utils/config";
-const RestaurantCard = (props) => {
+const RestaurantCard = ({ resData }) => {
   const { name, cloudinaryImageId, avgRating, cuisines, areaName } =
-    props.resData?.info;
+    resData?.info;
 
   //console.log(props?.resData?.info?.aggregatedDiscountInfoV3);
 
@@ -23,7 +23,8 @@ export const offerLabel = (RestaurantCard) => {
   return (props) => {
     //DESTRUCURING PROPS
 
-    const { header, subHeader } = props.resData.info.aggregatedDiscountInfoV3;
+    const { header, subHeader } =
+      props?.resData?.info?.aggregatedDiscountInfoV3;
     return (
       <div className="hover:scale-110 duration-[220ms] relative">
         <label className="bg-orange-500 text-white rounded-lg text-xs font-bold p-1 z-10 absolute top-2">
