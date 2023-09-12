@@ -7,7 +7,10 @@ const RestaurantCard = ({ resData }) => {
   //console.log(props?.resData?.info?.aggregatedDiscountInfoV3);
 
   return (
-    <div className="w-52 m-8 h-80 hover:scale-110 duration-[250ms]">
+    <div
+      className="w-52 m-8 h-80 hover:scale-110 duration-[250ms]"
+      data-testid="resCard"
+    >
       <img className="h-40 w-96 rounded-lg" src={IMG_URL + cloudinaryImageId} />
       <div className="py-4">
         <h1 className="font-bold">{name}</h1>

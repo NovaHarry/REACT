@@ -6,7 +6,7 @@ const Category = ({ ItemData, show, setShow }) => {
     setShow();
   };
   return (
-    <div className="bg-white my-4 rounded-sm">
+    <div className="bg-white my-4 rounded-sm" data-testid="foodCategory">
       <div className="font-bold p-4 rounded-md">
         <div
           className="font-bold flex justify-between"

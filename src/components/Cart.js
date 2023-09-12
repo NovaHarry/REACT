@@ -4,7 +4,6 @@ import { addItems, clearCart } from "../utils/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  //console.log(cartItems);
 
   //DISPATCHING AN ACTION
   const dispatch = useDispatch();
@@ -37,7 +36,11 @@ const Cart = () => {
           </button>
           <div className="w-6/12 m-auto shadow-xl p-2 text-lg">
             {cartItems.map((data, index) => (
-              <div key={index} className="flex justify-between border-b-2">
+              <div
+                key={index}
+                className="flex justify-between border-b-2"
+                data-testid="addedCartItems"
+              >
                 <div className="grid text-left py-4 w-10/12">
                   <span className="font-bold">{data.card.info.name}</span>
                   <span className="font-semibold">

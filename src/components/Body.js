@@ -44,6 +44,18 @@ const Body = () => {
   return (
     <div className="body">
       <div className="flex justify-end m-4 gap-4">
+        <button
+          className="border-2 border-black rounded-md p-1 font-semibold"
+          onClick={() => {
+            const topRatedResData = mainRestaurantData.filter(
+              (res) => res.info.avgRating >= 4.5
+            );
+
+            setRenderRestaurantData(topRatedResData);
+          }}
+        >
+          Top Rated Restaurant
+        </button>
         <input
           className="border-black border-2 rounded-md p-1"
           type="text"
@@ -55,6 +67,7 @@ const Body = () => {
           className="border-black border-2 rounded-md p-1"
           type="text"
           name="search-field"
+          data-testid="searchInput"
           value={search}
           placeholder="Search"
           onChange={(e) => {
@@ -67,7 +80,6 @@ const Body = () => {
             const filteredData = mainRestaurantData.filter((res) =>
               res.info.name.toLowerCase().includes(search.toLowerCase())
             );
-
             setRenderRestaurantData(filteredData);
           }}
         >
